@@ -1,0 +1,151 @@
+# Movie-Ranking Website — Minimum Viable Product
+
+## Product Goal
+
+Create a social movie-ranking website where users can track movies they have watched, rate them, compare them directly, and see a personalized ranked list.
+
+## 1. User Accounts
+
+Users can:
+
+* Create an account with an email address and password
+* Log in and log out
+* Choose a username
+* Add a profile photo
+* View their personal profile
+
+## 2. Movie Search
+
+Users can:
+
+* Search for a movie by title
+* View the movie poster, title, release year, genre, and short description
+* Select a movie from the search results
+
+Movie information will come from a movie database API such as TMDB.
+
+## 3. Watched Movies
+
+Users can:
+
+* Mark a movie as watched
+* Add the date they watched it
+* Remove a movie from their watched list
+* View all movies they have watched
+
+Only watched movies can be rated, compared, and included in the user’s personal rankings.
+
+## 4. Star Ratings
+
+Users can rate each watched movie from 1 to 5 stars.
+
+The rating options are:
+
+* 1 star — Disliked it
+* 2 stars — Below average
+* 3 stars — Good
+* 4 stars — Very good
+* 5 stars — Excellent
+
+Users can change their rating at any time.
+
+## 5. Movie Comparisons
+
+The website shows users two movies they have watched and asks:
+
+**Which movie did you like better?**
+
+Users select one movie as the winner.
+
+Each comparison helps determine the order of the user’s personal movie rankings.
+
+Users can continue comparing movies until they are satisfied with their ranked list.
+
+## 6. Personal Ranked List
+
+Every watched movie receives:
+
+* A 1-to-5-star rating
+* A specific ranking number
+
+Example:
+
+1. The Dark Knight — 5 stars
+2. Interstellar — 5 stars
+3. The Social Network — 4 stars
+4. Barbie — 4 stars
+5. The Hangover — 3 stars
+
+Movies should primarily be ordered using the user’s comparison results.
+
+Star ratings place movies into broad quality groups, while comparisons determine the exact order within and between those groups.
+
+## 7. Friends and Following
+
+Users can:
+
+* Search for other users by username
+* Follow another user
+* Unfollow another user
+* View the people they follow
+* View their followers
+
+For the first version, following does not need to require approval.
+
+## 8. Friends’ Profiles
+
+Users can view:
+
+* A friend’s ranked movie list
+* A friend’s star ratings
+* Movies a friend recently marked as watched
+* Movies both users have watched
+* Differences between their rankings
+
+## Main Website Pages
+
+The first version should contain:
+
+1. Landing page
+2. Sign-up and login pages
+3. Home feed
+4. Movie search page
+5. Movie details page
+6. Watched-movies page
+7. Movie-comparison page
+8. Personal rankings page
+9. User profile page
+10. Friends and user-search page
+
+## Features Not Included in the First Version
+
+The MVP should not initially include:
+
+* Written movie reviews
+* Comments
+* Direct messaging
+* Streaming-service availability
+* Group movie-night voting
+* Advanced recommendations
+* Movie trailers
+* Actor rankings
+* Television shows
+* Paid subscriptions
+* Native iPhone or Android apps
+
+These features can be added after users test the core movie-ranking experience.
+
+## Primary User Journey
+
+1. A user creates an account.
+2. The user searches for movies.
+3. The user marks movies as watched.
+4. The user gives each movie a 1-to-5-star rating.
+5. The user compares watched movies against one another.
+6. The website generates a numbered personal ranking.
+7. The user follows friends.
+8. The user views and compares friends’ movie rankings.
+
+## MVP Success Test
+
+The first version is successful when a new user can create an account, add at least 10 watched movies, rate them, compare them, receive a numbered ranking, and view a friend’s ranked list without assistance.
