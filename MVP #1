@@ -2,7 +2,9 @@
 
 ## Product Goal
 
-Create a social movie-ranking website where users can track movies they have watched, rate them, compare them directly, and see a personalized ranked list.
+Create a social movie-ranking website where users track movies they have watched, compare those movies against one another, and automatically generate a personalized numbered ranking.
+
+Users do not manually assign a ranking number or star rating to a movie. The website determines each movie’s position by asking the user which movie they preferred in a series of comparisons.
 
 ## 1. User Accounts
 
@@ -33,54 +35,92 @@ Users can:
 * Remove a movie from their watched list
 * View all movies they have watched
 
-Only watched movies can be rated, compared, and included in the user’s personal rankings.
+Only watched movies can be compared and included in the user’s personal rankings.
 
-## 4. Star Ratings
+## 4. Adding a Movie to the Rankings
 
-Users can rate each watched movie from 1 to 5 stars.
+When a user marks a new movie as watched, the website compares it against movies already in the user’s watched list.
 
-The rating options are:
+The user does not directly rate or rank the movie.
 
-* 1 star — Disliked it
-* 2 stars — Below average
-* 3 stars — Good
-* 4 stars — Very good
-* 5 stars — Excellent
+Instead, the website asks comparison questions such as:
 
-Users can change their rating at any time.
+**Which movie did you like better?**
+
+The user selects one of the two movies.
+
+The website continues showing relevant comparisons until it has enough information to place the new movie in the user’s ranked list.
+
+For example, after marking *Interstellar* as watched, the user might be asked:
+
+* Did you prefer *Interstellar* or *The Dark Knight*?
+* Did you prefer *Interstellar* or *Inception*?
+* Did you prefer *Interstellar* or *The Social Network*?
+
+The answers determine where *Interstellar* belongs in the user’s rankings.
 
 ## 5. Movie Comparisons
 
-The website shows users two movies they have watched and asks:
+The website only compares movies the user has marked as watched.
+
+Each comparison displays two watched movies and asks:
 
 **Which movie did you like better?**
 
 Users select one movie as the winner.
 
-Each comparison helps determine the order of the user’s personal movie rankings.
+The comparison system should:
 
-Users can continue comparing movies until they are satisfied with their ranked list.
+* Use comparisons to determine each movie’s ranking
+* Prioritize comparisons that help place a newly watched movie
+* Avoid asking unnecessary or repetitive questions
+* Allow users to skip a comparison
+* Allow users to select “I liked them equally”
+* Save every comparison result
+* Update the ranked list after each answer
+
+Users can also return to the comparison page later to refine their rankings.
 
 ## 6. Personal Ranked List
 
-Every watched movie receives:
-
-* A 1-to-5-star rating
-* A specific ranking number
+Every watched movie receives a specific ranking number based on the user’s comparison results.
 
 Example:
 
-1. The Dark Knight — 5 stars
-2. Interstellar — 5 stars
-3. The Social Network — 4 stars
-4. Barbie — 4 stars
-5. The Hangover — 3 stars
+1. The Dark Knight
+2. Interstellar
+3. The Social Network
+4. Barbie
+5. The Hangover
 
-Movies should primarily be ordered using the user’s comparison results.
+Users do not manually choose these ranking numbers.
 
-Star ratings place movies into broad quality groups, while comparisons determine the exact order within and between those groups.
+The ranking is generated from the user’s answers to head-to-head movie comparisons.
 
-## 7. Friends and Following
+When a new movie is added, the website places it into the existing rankings based on how the user compares it with previously watched movies.
+
+The personal ranked list should automatically update when:
+
+* A new movie is compared
+* A user changes a previous comparison
+* A movie is removed from the watched list
+* Additional comparisons clarify the order
+
+## 7. Ranking Confidence
+
+The website may show whether a movie’s ranking is complete or still needs more comparisons.
+
+Possible statuses include:
+
+* Newly added
+* Needs more comparisons
+* Ranking established
+
+This helps users understand why a movie’s position may change as they answer more comparison questions.
+
+A detailed numerical confidence score is not required for the first version.
+
+## 8. Friends and Following
 
 Users can:
 
@@ -92,15 +132,20 @@ Users can:
 
 For the first version, following does not need to require approval.
 
-## 8. Friends’ Profiles
+## 9. Friends’ Profiles
 
 Users can view:
 
 * A friend’s ranked movie list
-* A friend’s star ratings
 * Movies a friend recently marked as watched
 * Movies both users have watched
 * Differences between their rankings
+* Each user’s ranking for a shared movie
+
+Example:
+
+* Your ranking for *Interstellar*: No. 2
+* Friend’s ranking for *Interstellar*: No. 8
 
 ## Main Website Pages
 
@@ -121,6 +166,8 @@ The first version should contain:
 
 The MVP should not initially include:
 
+* Manual 1-to-5-star ratings
+* Manual ranking numbers
 * Written movie reviews
 * Comments
 * Direct messaging
@@ -133,19 +180,63 @@ The MVP should not initially include:
 * Paid subscriptions
 * Native iPhone or Android apps
 
-These features can be added after users test the core movie-ranking experience.
+These features can be added after users test the core movie-comparison and ranking experience.
 
 ## Primary User Journey
 
 1. A user creates an account.
 2. The user searches for movies.
-3. The user marks movies as watched.
-4. The user gives each movie a 1-to-5-star rating.
-5. The user compares watched movies against one another.
-6. The website generates a numbered personal ranking.
-7. The user follows friends.
-8. The user views and compares friends’ movie rankings.
+3. The user marks a movie as watched.
+4. The website compares the movie against other movies the user has watched.
+5. The user chooses which movie they preferred in each comparison.
+6. The website places the new movie into the user’s numbered ranked list.
+7. The user adds and compares more watched movies.
+8. The user follows friends.
+9. The user views and compares friends’ movie rankings.
+
+## Example Ranking Flow
+
+A user already has the following ranking:
+
+1. The Dark Knight
+2. Inception
+3. Barbie
+4. The Hangover
+
+The user marks *Interstellar* as watched.
+
+The website asks:
+
+**Did you prefer Interstellar or Inception?**
+
+The user selects *Interstellar*.
+
+The website then asks:
+
+**Did you prefer Interstellar or The Dark Knight?**
+
+The user selects *The Dark Knight*.
+
+The website now has enough information to place *Interstellar* between the two movies.
+
+The updated ranking becomes:
+
+1. The Dark Knight
+2. Interstellar
+3. Inception
+4. Barbie
+5. The Hangover
 
 ## MVP Success Test
 
-The first version is successful when a new user can create an account, add at least 10 watched movies, rate them, compare them, receive a numbered ranking, and view a friend’s ranked list without assistance.
+The first version is successful when a new user can:
+
+* Create an account
+* Add at least 10 watched movies
+* Compare those movies against one another
+* Receive an automatically generated numbered ranking
+* Add a new movie and place it into the existing ranking through comparisons
+* Follow another user
+* View a friend’s ranked movie list
+
+The user should be able to complete this process without manually assigning star ratings or ranking numbers.
